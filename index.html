@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎀 Layanan Sewa Bot Premium 🎀</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+        :root {
+            --primary: #ff6ec7;
+            --secondary: #a18aff;
+            --dark: #1a1a2e;
+            --light: #f8f8ff;
+            --neon-pink: #ff00ff;
+            --neon-blue: #00ffff;
+            --neon-purple: #9d00ff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 110, 199, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(161, 138, 255, 0.1) 0%, transparent 20%);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            padding: 30px 0;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px rgba(255, 0, 255, 0.5);
+            }
+            to {
+                text-shadow: 0 0 15px rgba(255, 0, 255, 0.8), 0 0 20px rgba(157, 0, 255, 0.6);
+            }
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        .neon-border {
+            border: 2px solid transparent;
+            border-image: linear-gradient(45deg, var(--neon-pink), var(--neon-blue)) 1;
+            animation: border-glow 3s ease-in-out infinite;
+            box-shadow: 0 0 15px rgba(157, 0, 255, 0.3);
+        }
+        
+        @keyframes border-glow {
+            0% {
+                box-shadow: 0 0 15px rgba(255, 0, 255, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+            }
+            100% {
+                box-shadow: 0 0 15px rgba(157, 0, 255, 0.3);
+            }
+        }
+        
+        .pricing-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .pricing-card {
+            background: rgba(26, 26, 46, 0.8);
+            border-radius: 15px;
+            padding: 25px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue), var(--neon-purple));
+            z-index: -1;
+            border-radius: 16px;
+            animation: rotate 4s linear infinite;
+        }
+        
+        .pricing-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(26, 26, 46, 0.9);
+            border-radius: 14px;
+            z-index: -1;
+        }
+        
+        @keyframes rotate {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(157, 0, 255, 0.2);
+        }
+        
+        .pricing-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .pricing-title i {
+            margin-right: 10px;
+        }
+        
+        .price {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .features-section {
+            margin: 50px 0;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .feature-card {
+            background: rgba(161, 138, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(161, 138, 255, 0.2);
+        }
+        
+        .feature-title {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-title i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+        
+        .feature-list {
+            list-style-type: none;
+        }
+        
+        .feature-list li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .feature-list li::before {
+            content: '✓';
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+        }
+        
+        .cta-section {
+            text-align: center;
+            margin: 50px 0;
+            padding: 30px;
+            border-radius: 15px;
+            background: rgba(255, 110, 199, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 0, 255, 0.1) 0%, transparent 70%);
+            animation: pulse 6s infinite alternate;
+            z-index: -1;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(1.2);
+                opacity: 0.2;
+            }
+        }
+        
+        .cta-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, var(--neon-pink), var(--neon-purple));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(157, 0, 255, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255, 255, 255, 0.3) 0%,
+                rgba(255, 255, 255, 0) 60%
+            );
+            transform: rotate(30deg);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% {
+                transform: rotate(30deg) translate(-30%, -30%);
+            }
+            100% {
+                transform: rotate(30deg) translate(30%, 30%);
+            }
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(157, 0, 255, 0.6);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(161, 138, 255, 0.2);
+            color: var(--light);
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .social-link:hover {
+            background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue));
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(157, 0, 255, 0.4);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+        
+        .highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .bonus-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            color: #1a1a2e;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 10px;
+            animation: pulse 2s infinite;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .pricing-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-card {
+                padding: 20px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>🎀 Layanan Sewa Bot Premium 🎀</h1>
+                <p class="subtitle">Tingkatkan pengalaman grup Anda dengan bot canggih kami!</p>
+            </div>
+        </header>
+        
+        <section class="pricing-section">
+            <div class="pricing-card neon-border">
+                <h2 class="pricing-title"><i class="fas fa-shopping-cart"></i> 1 Minggu</h2>
+                <div class="price">Rp.5.000</div>
+                <ul class="feature-list">
+                    <li>Akses semua fitur dasar</li>
+                    <li>Dukungan 24/7</li>
+                    <li>Update rutin</li>
+                </ul>
+            </div>
+            
+            <div class="pricing-card neon-border">
+                <h2 class="pricing-title"><i class="fas fa-shopping-cart"></i> 2 Minggu</h2>
+                <div class="price">Rp.10.000</div>
+                <ul class="feature-list">
+                    <li>Akses semua fitur dasar</li>
+                    <li>Dukungan 24/7</li>
+                    <li>Update rutin</li>
+                </ul>
+            </div>
+            
+            <div class="pricing-card neon-border">
+                <h2 class="pricing-title"><i class="fas fa-shopping-cart"></i> 1 Bulan <span class="bonus-badge">Bonus Premium 7 Hari</span></h2>
+                <div class="price">Rp.15.000</div>
+                <ul class="feature-list">
+                    <li>Akses semua fitur premium</li>
+                    <li>Dukungan prioritas</li>
+                    <li>Update rutin</li>
+                    <li>Free premium 7 hari</li>
+                </ul>
+            </div>
+            
+            <div class="pricing-card neon-border">
+                <h2 class="pricing-title"><i class="fas fa-shopping-cart"></i> 3 Bulan <span class="bonus-badge">Bonus Premium 14 Hari</span></h2>
+                <div class="price">Rp.30.000</div>
+                <ul class="feature-list">
+                    <li>Akses semua fitur premium</li>
+                    <li>Dukungan prioritas</li>
+                    <li>Update rutin</li>
+                    <li>Free premium 14 hari</li>
+                </ul>
+            </div>
+            
+            <div class="pricing-card neon-border">
+                <h2 class="pricing-title"><i class="fas fa-shopping-cart"></i> 8 Bulan <span class="bonus-badge">Bonus Premium 60 Hari</span></h2>
+                <div class="price">Rp.50.000</div>
+                <ul class="feature-list">
+                    <li>Akses semua fitur premium</li>
+                    <li>Dukungan prioritas</li>
+                    <li>Update rutin</li>
+                    <li>Free premium 60 hari</li>
+                </ul>
+            </div>
+            
+            <div class="pricing-card neon-border">
+                <h2 class="pricing-title"><i class="fas fa-crown"></i> Permanent <span class="bonus-badge">Bonus Permanent</span></h2>
+                <div class="price">Rp.200.000</div>
+                <ul class="feature-list">
+                    <li>Akses semua fitur premium</li>
+                    <li>Dukungan prioritas</li>
+                    <li>Update seumur hidup</li>
+                    <li>Free premium permanent</li>
+                    <li>Akses fitur eksklusif</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section class="features-section">
+            <h2 class="cta-title">🌟 Keuntungan Sewa Bot Kami 🌟</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3 class="feature-title"><i class="fas fa-gift"></i> Bonus Spesial</h3>
+                    <ul class="feature-list">
+                        <li>Free Premium untuk penyewa</li>
+                        <li>Bonus waktu tambahan</li>
+                        <li>Akses eksklusif</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h3 class="feature-title"><i class="fas fa-shield-alt"></i> Perlindungan Grup</h3>
+                    <ul class="feature-list">
+                        <li>Anti Virus</li>
+                        <li>Anti Toxic</li>
+                        <li>Anti Spam</li>
+                        <li>Anti Link Grup lain</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h3 class="feature-title"><i class="fas fa-gamepad"></i> Game Seru</h3>
+                    <ul class="feature-list">
+                        <li>Tebak-tebakan</li>
+                        <li>Teka teki</li>
+                        <li>RPG</li>
+                        <li>Dan banyak game lainnya</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h3 class="feature-title"><i class="fas fa-tools"></i> Fitur Maker & Tools</h3>
+                    <ul class="feature-list">
+                        <li>Membuat Stiker</li>
+                        <li>Edit Nama</li>
+                        <li>Add/Kick Pakai Bot</li>
+                        <li>1205+ Fitur lainnya</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section class="cta-section neon-border">
+            <h2 class="cta-title">MINAT SEWA BOT KAMI?</h2>
+            <p style="margin-bottom: 20px;">Hubungi kami sekarang untuk informasi lebih lanjut dan pemesanan!</p>
+            <a href="https://wa.me/6287778002663" class="cta-button">
+                <i class="fab fa-whatsapp"></i> Hubungi via WhatsApp
+            </a>
+            
+            <div class="social-links">
+                <a href="https://wa.me/6287778002663" class="social-link" title="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://www.instagram.com/christoy.only?igsh=MXM0dHZqaXV0ODN0NA==" class="social-link" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://wa.me/6287778002663" class="social-link" title="Telegram">
+                    <i class="fab fa-telegram"></i>
+                </a>
+                <a href="https://wa.me/6287778002663" class="social-link" title="Facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+            </div>
+        </section>
+        
+        <footer>
+            <p>&copy; 2023 <span class="highlight">Layanan Sewa Bot Premium</span>. All Rights Reserved.</p>
+            <p>Dibuat dengan ❤️ untuk pengalaman grup yang lebih baik</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Animasi tambahan
+        document.addEventListener('DOMContentLoaded', function() {
+            const pricingCards = document.querySelectorAll('.pricing-card');
+            
+            pricingCards.forEach((card, index) => {
+                // Delay animation for each card
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+            
+            // Floating animation
+            setInterval(() => {
+                pricingCards.forEach(card => {
+                    const randomY = Math.sin(Date.now() / 1000 + Math.random() * 10) * 5;
+                    card.style.transform = `translateY(${randomY}px)`;
+                });
+            }, 50);
+            
+            // Click effect
+            document.querySelector('.cta-button').addEventListener('click', function(e) {
+                e.preventDefault();
+                const button = this;
+                
+                // Ripple effect
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                button.appendChild(ripple);
+                
+                // Get click position
+                const rect = button.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                // Position the ripple
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+                
+                // Remove ripple after animation
+                setTimeout(() => {
+                    ripple.remove();
+                    window.location.href = button.href;
+                }, 1000);
+            });
+        });
+    </script>
+</body>
+</html>
